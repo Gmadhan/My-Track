@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/AppColor">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/dp15"
+        android:paddingVertical="@dimen/dp75">
+
+        <include
+            android:id="@+id/in_userimage"
+            android:layout_width="@dimen/dp120"
+            android:layout_height="@dimen/dp120"
+            android:layout_gravity="center"
+            layout="@layout/circular_image"/>
+
+        <com.mytrack.utils.customtext.SemiBoldTextView
+            android:id="@+id/txtProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center"
+            android:text="User Name"
+            android:textSize="@dimen/dp18"
+            android:textColor="@color/White"
+            android:textStyle="bold"
+            android:padding="@dimen/dp5"/>
+
+    </LinearLayout>
+
+    <com.mytrack.utils.customtext.RegularTextView
+        android:id="@+id/btnChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_marginVertical="@dimen/dp10"
+        android:background="@drawable/card_shape"
+        android:backgroundTint="@color/White"
+        android:text="@string/change_password"
+        android:textSize="@dimen/dp15"
+        android:textColor="@color/TextBlack"
+        android:padding="@dimen/dp15"/>
+
+    <com.mytrack.utils.customtext.RegularTextView
+        android:id="@+id/btnLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_marginVertical="@dimen/dp10"
+        android:background="@drawable/card_shape"
+        android:backgroundTint="@color/White"
+        android:text="@string/language"
+        android:textSize="@dimen/dp15"
+        android:textColor="@color/TextBlack"
+        android:padding="@dimen/dp15"/>
+
+    <com.mytrack.utils.customtext.RegularTextView
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_marginVertical="@dimen/dp10"
+        android:background="@drawable/card_shape"
+        android:backgroundTint="@color/White"
+        android:text="@string/Logout"
+        android:textSize="@dimen/dp15"
+        android:textColor="@color/Red"
+        android:padding="@dimen/dp15"
+        android:drawableEnd="@drawable/ic_logout"
+        android:drawableTint="@color/Red"/>
+
+</LinearLayout>

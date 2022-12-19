@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/AppColor"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp20">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/dp100"
+            android:layout_height="@dimen/dp60"
+            android:visibility="invisible"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loading_anim.json"
+            app:lottie_loop="true" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:background="@color/White"
+            app:cardCornerRadius="@dimen/dp8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/White"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/AppColor"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp10">
+
+                    <com.mytrack.utils.customtext.RegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/change_password"
+                        android:textColor="@color/White"
+                        android:textSize="@dimen/sp16"
+                        android:textStyle="bold"
+                        app:textAllCaps="true" />
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp20">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtUserID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_mobile"
+                        android:drawablePadding="@dimen/dp5"
+                        android:background="@drawable/circle_cornor_stroke"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:hint="@string/mobile_no"
+                        android:textColorHint="@color/HintColor"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:padding="@dimen/dp15"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/sp14" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtOTP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_mobile"
+                        android:drawablePadding="@dimen/dp5"
+                        android:background="@drawable/circle_cornor_stroke"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:hint="@string/otp"
+                        android:textColorHint="@color/HintColor"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:padding="@dimen/dp15"
+                        android:singleLine="true"
+                        android:textColor="@color/Black"
+                        android:textSize="@dimen/sp14"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_pwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/circle_cornor_stroke"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="4">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edt_pwd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:drawableStart="@drawable/ic_password"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="@string/password"
+                            android:textColorHint="@color/HintColor"
+                            android:inputType="textPassword"
+                            android:maxLength="15"
+                            android:padding="@dimen/dp15"
+                            android:singleLine="true"
+                            android:textColor="@color/Black"
+                            android:textSize="@dimen/sp14"
+                            android:layout_weight="3"/>
+
+                        <ToggleButton
+                            android:id="@+id/tb_pwd"
+                            android:layout_width="@dimen/dp40"
+                            android:layout_height="@dimen/dp24"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_password_visible"
+                            android:gravity="center"
+                            android:layout_margin="@dimen/dp10"
+                            android:textOff=""
+                            android:textOn=""
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_cpwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/circle_cornor_stroke"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="4">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edt_confirm_pwd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:drawableStart="@drawable/ic_password"
+                            android:drawablePadding="@dimen/dp5"
+                            android:hint="@string/confirm_password"
+                            android:textColorHint="@color/HintColor"
+                            android:inputType="textPassword"
+                            android:maxLength="15"
+                            android:padding="@dimen/dp15"
+                            android:singleLine="true"
+                            android:textColor="@color/Black"
+                            android:textSize="@dimen/sp14"
+                            android:layout_weight="3"/>
+
+                        <ToggleButton
+                            android:id="@+id/tb_cpwd"
+                            android:layout_width="@dimen/dp40"
+                            android:layout_height="@dimen/dp24"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_password_visible"
+                            android:gravity="center"
+                            android:layout_margin="@dimen/dp10"
+                            android:textOff=""
+                            android:textOn=""
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp25"
+                        android:orientation="horizontal">
+
+                        <com.mytrack.utils.customtext.RegularTextView
+                            android:id="@+id/btn_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp50"
+                            android:background="@drawable/circle_cornor"
+                            android:backgroundTint="@color/AppColor"
+                            android:gravity="center"
+                            android:padding="@dimen/dp10"
+                            android:text="@string/Submit"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/sp16"
+                            android:visibility="gone" />
+
+                        <com.mytrack.utils.customtext.RegularTextView
+                            android:id="@+id/btn_verify"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp50"
+                            android:background="@drawable/circle_cornor"
+                            android:backgroundTint="@color/AppColor"
+                            android:gravity="center"
+                            android:text="@string/verify"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/sp16"
+                            android:visibility="visible"
+                            app:textAllCaps="true" />
+
+                        <com.mytrack.utils.customtext.RegularTextView
+                            android:id="@+id/success"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/circle_cornor"
+                            android:backgroundTint="@color/LiteGreen"
+                            android:drawableStart="@drawable/ic_tick"
+                            android:gravity="center"
+                            android:padding="@dimen/dp10"
+                            android:text="@string/success"
+                            android:textColor="@color/White"
+                            android:textSize="@dimen/sp16"
+                            android:visibility="gone"
+                            app:textAllCaps="true" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</LinearLayout>

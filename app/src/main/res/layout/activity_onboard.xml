@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/AppColor"
+    android:orientation="vertical">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp200"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="map_route_anim.json"
+        app:lottie_loop="true" />
+
+    <!--<androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_top_radius"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:padding="0dp"
+            app:tabGravity="fill"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/tabonboardText"
+            app:tabSelectedTextColor="@color/AppColor"
+            app:tabTextColor="@color/TextMediumGrey" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_login_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

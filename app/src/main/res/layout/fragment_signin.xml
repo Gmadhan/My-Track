@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/signinLay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical"
+    android:padding="@dimen/dp20">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtUserID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_mobile"
+        android:drawablePadding="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp10"
+        android:hint="@string/mobile_no"
+        android:background="@drawable/circle_cornor_stroke"
+        android:textColorHint="@color/TextMediumGrey"
+        android:inputType="number"
+        android:maxLength="10"
+        android:nextFocusDown="@id/edtPassword"
+        android:padding="@dimen/dp15"
+        android:singleLine="true"
+        android:textColor="@color/TextBlack"
+        android:textSize="@dimen/sp14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_cornor_stroke"
+        android:layout_marginTop="@dimen/dp15"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="@dimen/dp5"
+            android:background="@null"
+            android:hint="@string/password"
+            android:textColorHint="@color/TextMediumGrey"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:padding="@dimen/dp15"
+            android:singleLine="true"
+            android:textColor="@color/TextBlack"
+            android:textSize="@dimen/sp14"
+            android:layout_weight="3" />
+
+        <ToggleButton
+            android:id="@+id/tbSigninPwd"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/sp24"
+            android:layout_weight="1"
+            android:background="@drawable/ic_password_visible"
+            android:gravity="center"
+            android:layout_margin="@dimen/dp10"
+            android:textOff=""
+            android:textOn=""
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <com.mytrack.utils.customtext.RegularTextView
+        android:id="@+id/btnSignin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:layout_marginTop="@dimen/dp30"
+        android:background="@drawable/circle_cornor"
+        android:backgroundTint="@color/AppColor"
+        android:gravity="center"
+        android:text="@string/Submit"
+        android:textColor="@color/TextWhite"
+        android:textSize="@dimen/sp18" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/btnSigninSuccess"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp15"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="success_anim.json"
+        app:lottie_loop="false" />
+
+    <com.mytrack.utils.customtext.RegularTextView
+        android:id="@+id/btnForgetPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/dp15"
+        android:padding="@dimen/dp5"
+        android:text="@string/forgot_password"
+        android:textSize="@dimen/sp16"
+        android:textColor="@color/AppColor"/>
+
+</LinearLayout>

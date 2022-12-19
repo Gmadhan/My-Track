@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="6">
+
+    <!--<include
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/profile_image_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:background="@color/headercolor"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.github.siyamed.shapeimageview.CircularImageView
+            android:id="@+id/profile_img"
+            android:layout_width="@dimen/space_120sp"
+            android:layout_height="@dimen/space_120sp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_profileimage"
+            app:siBorderColor="@color/headercolor"
+            app:siBorderWidth="0sp" />
+    </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/page_load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2.5"
+        android:visibility="visible"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="page.json"
+        app:lottie_loop="true" />
+
+    <LinearLayout
+        android:id="@+id/profile_detail_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_15sp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_10sp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/profile_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/SemiTransparentBlue"
+                android:hint="@string/name"
+                android:maxLength="20"
+                android:nextFocusDown="@id/profile_gmail"
+                android:padding="@dimen/space_5sp"
+                android:singleLine="true"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/space_14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/name_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintColor" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_15sp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/profile_gmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/SemiTransparentBlue"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:maxLength="36"
+                android:nextFocusDown="@id/profile_phno"
+                android:padding="@dimen/space_5sp"
+                android:singleLine="true"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/space_14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/email_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintColor" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_15sp">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/profile_phno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/SemiTransparentBlue"
+                android:enabled="false"
+                android:focusable="false"
+                android:hint="@string/mobile_no"
+                android:inputType="number"
+                android:nextFocusDown="@id/profile_submit"
+                android:padding="@dimen/space_5sp"
+                android:singleLine="true"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/space_14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/mobile_no_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintColor" />
+
+    </LinearLayout>
+
+    <com.mytrack.utils.customtext.LokiRegularTextView
+        android:id="@+id/profile_submit"
+        android:layout_gravity="center|bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_15sp"
+        android:background="@drawable/circle_cornor"
+        android:gravity="center"
+        android:paddingLeft="9sp"
+        android:paddingBottom="@dimen/space_15sp"
+        android:paddingTop="@dimen/space_15sp"
+        android:paddingRight="9sp"
+        android:text="save"
+        android:textColor="@color/White"
+        android:textSize="@dimen/space_16sp"
+        android:visibility="gone"/>-->
+
+</LinearLayout>

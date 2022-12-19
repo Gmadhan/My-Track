@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "6253453487",
+    "firebase_url": "https://mapbroadcast-ddc55.firebaseio.com",
+    "project_id": "mapbroadcast-ddc55",
+    "storage_bucket": "mapbroadcast-ddc55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6253453487:android:1c1295c0d7a5fec930f45a",
+        "android_client_info": {
+          "package_name": "com.mapbroadcast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6253453487-onu6437tvq43546ks5osuidgmj3ipr69.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mapbroadcast",
+            "certificate_hash": "9591d8f03d5873a8353629b0941a7623ace39125"
+          }
+        },
+        {
+          "client_id": "6253453487-k2qh0dsop1pu7e89kea2ef1fr2ks9nh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD6WhQ8Lh-86NDA7IrgEicGP4ZqyFmDDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6253453487-k2qh0dsop1pu7e89kea2ef1fr2ks9nh6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

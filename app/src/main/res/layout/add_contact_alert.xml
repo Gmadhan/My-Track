@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/contact_lay"
+    android:gravity="center"
+    android:alpha="0.95"
+    android:paddingHorizontal="@dimen/dp25">
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:cardCornerRadius="@dimen/dp8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.mytrack.utils.customtext.SemiBoldTextView
+                android:id="@+id/header"
+                android:text="Add Contact"
+                android:background="@color/AppColor"
+                android:padding="@dimen/dp15"
+                android:textColor="@color/White"
+                android:textSize="@dimen/sp16"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TIL_name"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:counterTextAppearance="@color/AppColor">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/contact_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Transparent"
+                    android:hint="@string/name"
+                    android:textColorHint="@color/TextMediumGrey"
+                    android:nextFocusDown="@id/mobile_no"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/sp14" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:background="@color/LiteGray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TIL_mobile"
+                android:layout_marginTop="5sp"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:counterTextAppearance="@color/AppColor">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/mobile_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Transparent"
+                    android:hint="@string/mobile_no"
+                    android:textColorHint="@color/TextMediumGrey"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:padding="@dimen/dp5"
+                    android:singleLine="true"
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/sp14" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:background="@color/LiteGray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <View
+                android:layout_marginTop="15sp"
+                android:background="@color/LiteGray"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:weightSum="2"
+                android:background="@color/White"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.mytrack.utils.customtext.SemiBoldTextView
+                    android:id="@+id/cancel"
+                    android:text="@string/Cancel"
+                    android:padding="@dimen/dp15"
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/Red"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:background="@color/LiteGray"
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"/>
+
+                <com.mytrack.utils.customtext.SemiBoldTextView
+                    android:id="@+id/save"
+                    android:text="@string/Save"
+                    android:padding="@dimen/dp15"
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/AppColor"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

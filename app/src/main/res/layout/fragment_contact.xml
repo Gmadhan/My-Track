@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:layout_below="@+id/header"
+        android:id="@+id/contact_list"
+        android:divider="@null"
+        android:dividerHeight="1dp"
+        android:scrollbars="none"
+        android:transcriptMode="alwaysScroll"
+        android:background="@color/LiteGray"
+        android:layout_width="match_parent"
+        android:layoutAnimation="@anim/anim_recycler"
+        android:layout_height="match_parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_add_contact"
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginEnd="@dimen/dp15"
+        android:layout_marginBottom="@dimen/dp15"
+        android:padding="@dimen/dp10"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/circle_shape"
+        android:backgroundTint="@color/White"
+        android:src="@drawable/ic_add"/>
+
+</RelativeLayout>

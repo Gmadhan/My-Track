@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/AppColor"
+    android:weightSum="6">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/page_load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_weight="2.5"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="page.json"
+        app:lottie_loop="true" />
+
+    <LinearLayout
+        android:id="@+id/profile_image_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <com.github.siyamed.shapeimageview.CircularImageView
+            android:id="@+id/profile_img"
+            android:layout_width="@dimen/dp120"
+            android:layout_height="@dimen/dp120"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_profileimage"
+            app:siBorderColor="@color/AppColor"
+            app:siBorderWidth="0sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profile_detail_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp15"
+        android:background="@drawable/card_top_radius"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_profile_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/Transparent"
+                android:hint="@string/name"
+                android:maxLength="20"
+                android:nextFocusDown="@id/edt_profile_gmail"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/TextBlack"
+                android:textSize="@dimen/sp14" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/name_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintColor" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp15">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_profile_gmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/Transparent"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:maxLength="36"
+                android:nextFocusDown="@id/edt_profile_phno"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/TextBlack"
+                android:textSize="@dimen/sp14" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/email_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintColor" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp15">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_profile_phno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/Transparent"
+                android:enabled="false"
+                android:focusable="false"
+                android:hint="@string/mobile_no"
+                android:inputType="number"
+                android:nextFocusDown="@id/btnSubmit"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:textColor="@color/TextBlack"
+                android:textSize="@dimen/sp14" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/mobile_no_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintColor" />
+
+    </LinearLayout>
+
+    <com.mytrack.utils.customtext.RegularTextView
+        android:id="@+id/btnSubmit"
+        android:layout_gravity="center|bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_margin="@dimen/dp15"
+        android:background="@drawable/circle_cornor"
+        android:gravity="center"
+        android:text="@string/Save"
+        android:textColor="@color/TextWhite"
+        android:textSize="@dimen/sp16"
+        android:visibility="gone"/>
+
+</LinearLayout>

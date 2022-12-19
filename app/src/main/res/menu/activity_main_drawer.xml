@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/weather"
+            android:icon="@drawable/ic_weather"
+            android:title="@string/weather" />
+        <item
+            android:id="@+id/chat"
+            android:icon="@drawable/ic_chat"
+            android:title="@string/Chat"
+            android:visible="true" />
+        <item
+            android:id="@+id/Normal"
+            android:icon="@drawable/ic_transport"
+            android:title="@string/Transport" />
+        <item
+            android:id="@+id/Satellite"
+            android:icon="@drawable/ic_satellite"
+            android:title="@string/Satellite" />
+        <item
+            android:id="@+id/Terrain"
+            android:icon="@drawable/ic_terrain"
+            android:title="@string/Terrain" />
+        <item
+            android:id="@+id/Hybird"
+            android:icon="@drawable/ic_hybird"
+            android:title="@string/Hybird" />
+        <item
+            android:id="@+id/Nightmode"
+            android:icon="@drawable/ic_night"
+            android:title="@string/Night_mode" />
+        <item
+            android:id="@+id/speedcalc"
+            android:icon="@drawable/ic_speed"
+            android:title="@string/Travelling_Speed" />
+        <item
+            android:id="@+id/findfriend"
+            android:icon="@drawable/ic_find"
+            android:title="@string/FindFriends" />
+        <item
+            android:id="@+id/Driving_mode"
+            android:icon="@drawable/ic_driving_mode"
+            android:title="@string/Driving_mode" />
+        <item
+            android:id="@+id/Walking_mode"
+            android:icon="@drawable/ic_walking_mode"
+            android:title="@string/Walking_mode" />
+        <item
+            android:id="@+id/bicycling_mode"
+            android:icon="@drawable/ic_bicycle_mode"
+            android:title="@string/Bicycling_mode" />
+        <item
+            android:id="@+id/language"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/Settings" />
+        <item
+            android:id="@+id/Logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/Logout" />
+    </group>
+
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
+
+</menu>

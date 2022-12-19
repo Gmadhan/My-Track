@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<include
+        android:id="@+id/head"
+        layout="@layout/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_10sp">
+
+        <com.mytrack.utils.customtext.LokiRegularTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:text="Picture in Picture Mode"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/space_16sp" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/pipswitch"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/language_setting_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_10sp">
+
+        <com.mytrack.utils.customtext.LokiRegularTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:text="Language"
+            android:singleLine="true"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/space_16sp" />
+
+        <com.mytrack.utils.customtext.LokiRegularTextView
+            android:id="@+id/selected_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:singleLine="true"
+            android:text="@string/English"
+            android:textColor="@color/LiteGreen"
+            android:textSize="@dimen/space_16sp" />
+
+    </RelativeLayout>-->
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp56"
+    android:background="@color/AppColor"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp15">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/dp5"
+        android:src="@drawable/back_btn" />
+
+    <com.mytrack.utils.customtext.SemiBoldTextView
+        android:id="@+id/txt_header_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="@dimen/dp30"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/app_name"
+        android:textColor="@color/White"
+        android:textSize="@dimen/sp18" />
+
+</RelativeLayout>
+

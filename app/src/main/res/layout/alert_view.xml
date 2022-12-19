@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="0.95"
+    android:background="@color/SemiTransparentBlue"
+    android:gravity="center"
+    android:paddingHorizontal="@dimen/dp25">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_alert"
+            android:orientation="vertical">
+
+            <com.mytrack.utils.customtext.RegularTextView
+                android:id="@+id/alertTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/dp5"
+                android:gravity="center"
+                android:text="@string/Title"
+                android:textColor="@color/AppColor"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/alertIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <com.mytrack.utils.customtext.RegularTextView
+                android:id="@+id/alertMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp5"
+                android:gravity="center"
+                android:text="@string/message"
+                android:textColor="@color/AppColor"
+                android:textSize="@dimen/sp16"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/alertImage"
+                android:layout_width="@dimen/dp180"
+                android:layout_height="@dimen/dp180"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/bg_alert_btn"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp5"
+                android:weightSum="4">
+
+                <com.mytrack.utils.customtext.RegularTextView
+                    android:id="@+id/success_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/Ok"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold" />
+
+                <com.mytrack.utils.customtext.RegularTextView
+                    android:id="@+id/failure_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/Cancel"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</RelativeLayout>
