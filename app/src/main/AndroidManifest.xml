@@ -7,7 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.CLEAR_APP_CACHE"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.MY_PERMISSIONS_REQUEST_CAMERA" />
@@ -59,14 +61,13 @@
         <!-- android:appComponentFactory="mapbroadcast" android:name="android.support.multidex.MultiDexApplication" -->
         <activity
             android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
-            android:screenOrientation="portrait"
-             />
-<!--        android:theme="@style/PlacesAutocompleteThemeOverlay"-->
+            android:screenOrientation="portrait" />
+        <!--        android:theme="@style/PlacesAutocompleteThemeOverlay"-->
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:label="MainActivity" />
+            android:label="MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.onboard.OnBoardActivity"
             android:exported="true"
@@ -79,6 +80,11 @@
             android:name=".ui.chat.ChatActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -97,7 +103,9 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
-        <service android:name=".service.FirebaseService"
+
+        <service
+            android:name=".service.FirebaseService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

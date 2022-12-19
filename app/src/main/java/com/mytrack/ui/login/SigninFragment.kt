@@ -116,14 +116,13 @@ class SigninFragment : Fragment() {
                 fragmentSigninBinding.btnSigninSuccess.playAnimation()
                 if (!getDeviceInfo().equals("", ignoreCase = true))
                     mFirebaseDatabase!!.child(mobileno!!).child("model").setValue(getDeviceInfo())
-                if (!Notify.DeviceToken.isNullOrEmpty())
-                    mFirebaseDatabase!!.child(mobileno!!).child("token")
-                        .setValue(Notify.DeviceToken)
+                if (!SessionSave.getSession(Constants.TOKEN,requireActivity()).toString().isNullOrEmpty())
+                    mFirebaseDatabase!!.child(mobileno!!).child("token").setValue(SessionSave.getSession(Constants.TOKEN,requireActivity()).toString())
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     Utils.dismissLoader()
                     (activity as OnBoardActivity).movetoHome()
-                }, 1400)
+                }, 1500)
             }
         } else {
             alertView(

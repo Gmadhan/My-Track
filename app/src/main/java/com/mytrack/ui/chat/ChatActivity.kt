@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseListAdapter
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.mytrack.databinding.FragmentChatBinding
@@ -97,8 +98,8 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
             if (userId != null) chatlist()
         }
         getToken()
-//        TOPIC = TOPIC+createrNo;
-//        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC);
+        /*TOPIC = TOPIC+createrNo;
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)*/
         if (mobileno.equals(user_phno, ignoreCase = true)) {
             fragmentChatBinding.txtHeaderName.text = createrName
             fragmentChatBinding.txtHeaderMobileno.text = createrNo

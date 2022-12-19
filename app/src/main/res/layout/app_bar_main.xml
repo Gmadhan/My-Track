@@ -10,8 +10,7 @@
         android:id="@+id/lnr_google_searchbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp15"
-        android:layout_marginHorizontal="@dimen/dp10"
+        android:layout_margin="@dimen/dp10"
         app:cardCornerRadius="@dimen/dp8"
         android:visibility="visible">
 

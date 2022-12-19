@@ -54,97 +54,97 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!--<com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10">
+            android:padding="@dimen/dp5"
+            android:background="@drawable/circle_cornor_stroke"
+            android:layout_marginTop="@dimen/dp10">-->
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edt_profile_id"
+                android:id="@+id/edt_profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/Transparent"
+                android:background="@drawable/circle_cornor_stroke"
                 android:hint="@string/name"
                 android:maxLength="20"
                 android:nextFocusDown="@id/edt_profile_gmail"
-                android:padding="@dimen/dp5"
+                android:padding="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp10"
                 android:singleLine="true"
                 android:textColor="@color/TextBlack"
                 android:textSize="@dimen/sp14" />
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <View
-            android:id="@+id/name_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/HintColor" />
-
-        <com.google.android.material.textfield.TextInputLayout
+        <!--<com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp15">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edt_profile_gmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/Transparent"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:maxLength="36"
-                android:nextFocusDown="@id/edt_profile_phno"
-                android:padding="@dimen/dp5"
-                android:singleLine="true"
-                android:textColor="@color/TextBlack"
-                android:textSize="@dimen/sp14" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <View
-            android:id="@+id/email_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/HintColor" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp15">
+            android:padding="@dimen/dp5"
+            android:background="@drawable/circle_cornor_stroke"
+            android:layout_marginTop="@dimen/dp15">-->
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edt_profile_phno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/Transparent"
+                android:background="@drawable/circle_cornor_stroke_filled_grey"
                 android:enabled="false"
                 android:focusable="false"
                 android:hint="@string/mobile_no"
                 android:inputType="number"
                 android:nextFocusDown="@id/btnSubmit"
-                android:padding="@dimen/dp5"
+                android:padding="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:singleLine="true"
+                android:textColor="@color/TextBlack"
+                android:textSize="@dimen/sp14"
+                android:editable="false"
+                android:clickable="false"/>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <!--<com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp5"
+            android:background="@drawable/circle_cornor_stroke"
+            android:layout_marginTop="@dimen/dp15">-->
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_profile_gmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_cornor_stroke"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:maxLength="36"
+                android:nextFocusDown="@id/edt_profile_phno"
+                android:padding="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
                 android:singleLine="true"
                 android:textColor="@color/TextBlack"
                 android:textSize="@dimen/sp14" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <View
-            android:id="@+id/mobile_no_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/HintColor" />
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
     </LinearLayout>
 
-    <com.mytrack.utils.customtext.RegularTextView
-        android:id="@+id/btnSubmit"
-        android:layout_gravity="center|bottom"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp50"
-        android:layout_margin="@dimen/dp15"
-        android:background="@drawable/circle_cornor"
-        android:gravity="center"
-        android:text="@string/Save"
-        android:textColor="@color/TextWhite"
-        android:textSize="@dimen/sp16"
-        android:visibility="gone"/>
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp15"
+        android:background="@color/White">
+
+        <com.mytrack.utils.customtext.SemiBoldTextView
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_gravity="center|bottom"
+            android:background="@drawable/circle_cornor"
+            android:gravity="center"
+            android:text="@string/Save"
+            android:textColor="@color/TextWhite"
+            android:textSize="@dimen/sp16"
+            android:visibility="visible"/>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -13,11 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.navigation.NavigationView
+    <!--<com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:visibility="gone">
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
@@ -32,6 +33,6 @@
             app:itemTextColor="@color/Black"
             app:menu="@menu/activity_main_drawer" />
 
-    </com.google.android.material.navigation.NavigationView>
+    </com.google.android.material.navigation.NavigationView>-->
 
 </androidx.drawerlayout.widget.DrawerLayout>

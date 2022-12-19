@@ -106,6 +106,7 @@
     <string name="Add_Friends">Add Friends</string>
     <string name="weather">Weather</string>
     <string name="profile">Profile</string>
+    <string name="edit_profile">Edit Profile</string>
     <string name="Logout">Logout</string>
     <string name="forgot_pwd">Forgot Password</string>
     <string name="please_click_again_to_exit">Press again to exit</string>

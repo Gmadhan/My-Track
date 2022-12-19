@@ -100,9 +100,6 @@ class OnBoardActivity: AppCompatActivity() {
                     ) || ActivityCompat.checkSelfPermission(
                 application,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) !== PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
-                application,
-                Manifest.permission.RECORD_AUDIO
             ) !== PackageManager.PERMISSION_GRANTED
         ) {
             // TODO: Consider calling
@@ -118,12 +115,14 @@ class OnBoardActivity: AppCompatActivity() {
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.RECORD_AUDIO
+                    Manifest.permission.ACCESS_COARSE_LOCATION
                 ),
                 MY_PERMISSIONS_REQUEST
             )
         }
+//        || ActivityCompat.checkSelfPermission(application, Manifest.permission.RECORD_AUDIO) !== PackageManager.PERMISSION_GRANTED
+//        Manifest.permission.RECORD_AUDIO
+
     }
 
 }

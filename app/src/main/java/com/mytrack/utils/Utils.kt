@@ -212,8 +212,12 @@ object Utils {
     }
 
     fun dismissLoader() {
-        if (progress != null)
-            progress!!.dismiss()
+        try {
+            if (progress != null)
+                progress!!.dismiss()
+        } catch (e: Exception){
+            e.printStackTrace()
+        }
     }
 
     fun setLanguage(context: Context, localeName: String) {

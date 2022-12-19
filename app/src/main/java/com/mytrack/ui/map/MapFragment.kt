@@ -2,6 +2,7 @@ package com.mytrack.ui.map
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
 import android.location.Location
@@ -36,10 +37,8 @@ import com.mytrack.api.ApiCall
 import com.mytrack.api.RetrofitClientInstance
 import com.mytrack.databinding.FragmentMapBinding
 import com.mytrack.model.response.WeatherResponse
-import com.mytrack.utils.Constants
-import com.mytrack.utils.Notify
-import com.mytrack.utils.SessionSave
-import com.mytrack.utils.Utils
+import com.mytrack.ui.profile.EditProfileActivity
+import com.mytrack.utils.*
 import com.mytrack.utils.Utils.convertDateTime
 import com.mytrack.utils.Utils.logger
 import com.mytrack.utils.Utils.showSnackBar
@@ -54,7 +53,7 @@ import java.util.*
 class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClickListener, OnConnectionFailedListener {
 
     private lateinit var fragmentMapBinding: FragmentMapBinding
-    private var mMap: GoogleMap? = null
+    var mMap: GoogleMap? = null
     private var mGoogleApiClient: GoogleApiClient? = null
     private var placeAutoComplete: AutocompleteSupportFragment? = null
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
@@ -69,6 +68,14 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
     private var currentLatLng : LatLng? = null
 
     private var mFirebaseDatabase: DatabaseReference? = null
+    private val polyLineOptions: PolylineOptions? = null
+    private var polyline: Polyline? = null
+    private var darkpolyline: Polyline? = null
+//    private var downloadTask: ReadTask? = null
+    private var latLngs: LatLng? = null
+    private var markerlatlng:LatLng? = null
+    private var Rmark_latlng:LatLng? = null
+    private var searchLatLng:LatLng? = null
 
     private val TAG = "MapFragment"
     private var locale : String? = null
@@ -116,9 +123,6 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
             .build()
         mGoogleApiClient!!.connect()
 
-        Places.initialize(requireActivity(), getString(R.string.google_api_key))
-        placesClient = Places.createClient(requireActivity())
-
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         fragmentMapBinding.searchBar.main.btnGPS.setOnClickListener {
             if(currentLatLng != null) {
@@ -136,11 +140,17 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
         setAutoComplete()
 
         mFirebaseDatabase = Firebase.database.reference.child("users")
+
+        fragmentMapBinding.searchBar.ivUser.ivUser.setOnClickListener {
+            val i = Intent(requireActivity(), EditProfileActivity::class.java)
+            startActivity(i)
+        }
     }
 
     fun setAutoComplete() {
         placeAutoComplete = childFragmentManager.findFragmentById(R.id.place_autocomplete) as AutocompleteSupportFragment?
-        Places.initialize(requireActivity(), getString(R.string.google_api_key))
+        Places.initialize(requireActivity(), "AIzaSyCA-kEh2UBqnNlDeBO-fuu929OdnKBqQT0")
+        placesClient = Places.createClient(requireActivity())
         if (placeAutoComplete != null)
             placeAutoComplete!!.setHint(getString(R.string.Search))
 
@@ -151,64 +161,23 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
             override fun onPlaceSelected(place: Place) {
                 // TODO: Get info about the selected place.
                 Log.i(TAG, "Place: ${place.name}, ${place.id}")
-                /*var latLngg: LatLng? = null
                 try {
-                    latLngg = place.latLng
-                    place_lat = place.latLng.latitude
-                    place_lng = place.latLng.longitude
-                    place_name = place.address.toString()
-                    searchadrs = place_name
-                } catch (e: java.lang.Exception) {
-                    e.printStackTrace()
-                }
-                if (place_ > 0) {
-                    removemarker(place_, search_marker)
-                    distancecard.setVisibility(View.GONE)
-                    removepoly()
-                }
-                if (latLngg != null) {
-                    if (click_marker != null) {
-                        removemarker(mark_no, click_marker)
-                        removepoly()
-                    }
-                    place_ = j++
-                    search_marker = mMap!!.addMarker(
-                        MarkerOptions().position(latLngg).title(searchadrs).icon(
-                            com.mapbroadcast.MapsActivity.BitmapDescriptionFromRes(
-                                getApplicationContext(),
-                                R.drawable.ic_end_point
+                    searchLatLng = place.latLng
+                    if(searchLatLng != null) {
+                        mMap!!.addMarker(
+                            MarkerOptions().position(searchLatLng!!)
+                                .title(place.address!!.toString()).icon(
+                                Utils.bitmapDescriptionFromRes(
+                                    requireActivity(),
+                                    R.drawable.ic_end_point
+                                )
                             )
                         )
-                    )
-                    //                    search_marker = mMap.addMarker(new MarkerOptions().position(latLngg).title(searchadrs).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                    search_marker.setVisible(true)
-                    marker_distance.setVisibility(View.VISIBLE)
-                    searchtext.setText(searchadrs)
-                    geocoder()
-                    gps_click_btn = false
-                    mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngg, 18.0f))
-                    if (connection) {
-                        _url = getMapsApiDirectionsUrl(latLngs, latLngg)
-                        pts = false
+                        mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(searchLatLng!!, 16.0f))
                     }
-                    directbtn.startAnimation(sliderht)
-                    directbtn.setVisibility(View.VISIBLE)
-                    search_distance.setVisibility(View.GONE)
-                    try {
-                        Showcase(
-                            "2",
-                            directbtn,
-                            getString(R.string.direction),
-                            getString(R.string.get_direction_for_ur_route)
-                        )
-                    } catch (e: java.lang.Exception) {
-                        e.printStackTrace()
-                    }
-                    if (gps_lat != null && place_lat != null && gps_lng != null && place_lng != null) {
-                        markerlatlng = latLngg
-                        distance()
-                    }
-                }*/
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
 
             override fun onError(status: Status) {
@@ -404,7 +373,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
         }
     }
 
-   /* private fun getMapsApiDirectionsUrl(origin: LatLng, dest: LatLng): String? {
+    private fun getMapsApiDirectionsUrl(origin: LatLng, dest: LatLng): String? {
         Apikey = getString(R.string.google_maps_key)
         // Origin of route
         val str_origin = "origin=" + origin.latitude + "," + origin.longitude
@@ -423,10 +392,10 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
         return url
     }
 
-    private fun polylineenable() {
+    /*private fun polylineenable() {
         try {
             if (!pts) {
-                downloadTask = com.mapbroadcast.MapsActivity.ReadTask()
+                downloadTask = ReadTask()
                 downloadTask.execute(_url)
                 distancecard.startAnimation(upanim)
                 distancecard.setVisibility(View.VISIBLE)
@@ -439,6 +408,177 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
         }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ReadTask : AsyncTask<String?, Void?, String>() {
+        override fun onPostExecute(result: String) {
+            super.onPostExecute(result)
+            url_value = result
+            try {
+                val jsonObject = JSONObject(result)
+                val routes = jsonObject.getJSONArray("routes")
+                val routes1 = routes.getJSONObject(0)
+                val legs = routes1.getJSONArray("legs")
+                val legs1 = legs.getJSONObject(0)
+                val distance = legs1.getJSONObject("distance")
+                val duration = legs1.getJSONObject("duration")
+                distanceText = distance.getString("text")
+                durationText = duration.getString("text")
+                println("distance...$distanceText $durationText")
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+            ParserTask().execute(result)
+        }
+
+        override fun doInBackground(vararg params: String?): String {
+            // TODO Auto-generated method stub
+            var data = ""
+            try {
+                val http = MapHttpConnection()
+                data = http.readUr(params[0]!!)
+            } catch (e: java.lang.Exception) {
+                Log.d("Background Task", e.toString())
+            }
+            return data
+        }
+    }
+
+    private class MapHttpConnection {
+        @SuppressLint("LongLogTag")
+        @Throws(IOException::class)
+        fun readUr(mapsApiDirectionsUrl: String): String {
+            var data = ""
+            var istream: InputStream? = null
+            var urlConnection: HttpURLConnection? = null
+            try {
+                val url = URL(mapsApiDirectionsUrl)
+                urlConnection = url.openConnection() as HttpURLConnection
+                urlConnection.connect()
+                istream = urlConnection!!.inputStream
+                val br = BufferedReader(InputStreamReader(istream))
+                val sb = StringBuffer()
+                var line: String? = ""
+                while (br.readLine().also { line = it } != null) {
+                    sb.append(line)
+                }
+                data = sb.toString()
+                br.close()
+            } catch (e: java.lang.Exception) {
+                Log.d("Exception while reading url", e.toString())
+            } finally {
+                istream!!.close()
+                urlConnection!!.disconnect()
+            }
+            return data
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class ParserTask : AsyncTask<String?, Int?, List<List<HashMap<String, String>>>?>() {
+
+        override fun onPostExecute(routes: List<List<HashMap<String, String>>>?) {
+            var points: ArrayList<LatLng?>? = null
+            for (i in routes!!.indices) {
+                points = ArrayList()
+                listlatlng = ArrayList()
+                polyLineOptions = PolylineOptions()
+                val path = routes[i]
+                for (j in path.indices) {
+                    val point = path[j]
+                    val lat = point["lat"]!!.toDouble()
+                    val lng = point["lng"]!!.toDouble()
+                    val position = LatLng(lat, lng)
+                    points.add(position)
+                    pts = true
+                }
+                polyLineOptions!!.addAll(points)
+            }
+            if (polyLineOptions != null) {
+                *//*Light line*//*
+                polyLineOptions!!.width(8f)
+                polyLineOptions!!.color(
+                    if (nightmode_btn)
+                        getResources().getColor(R.color.Red)
+                    else getResources().getColor(R.color.applitecolor)
+                )
+                polyLineOptions!!.startCap(SquareCap())
+                polyLineOptions!!.endCap(SquareCap())
+                polyLineOptions!!.jointType(JointType.ROUND)
+                polyline = mMap!!.addPolyline(polyLineOptions)
+                distance_txt.setText(" Distance : $distanceText")
+                time_txt.setText(" Time : $durationText")
+                polyline.setClickable(true)
+
+                *//*Dark line*//*
+                val darkPolylineOption = PolylineOptions()
+                darkPolylineOption.width(8f)
+                darkPolylineOption.color(
+                    if (nightmode_btn)
+                        getResources().getColor(R.color.DarkRed)
+                    else getResources().getColor(R.color.AppColor)
+                )
+                darkPolylineOption.startCap(SquareCap())
+                darkPolylineOption.endCap(SquareCap())
+                darkPolylineOption.jointType(JointType.ROUND)
+                darkpolyline = mMap!!.addPolyline(darkPolylineOption)
+                MapFragment.animatePolyLine(1000)
+            }
+        }
+
+        public override fun doInBackground(vararg params: String?): List<List<HashMap<String, String>>>? {
+            // TODO Auto-generated method stub
+            val jObject: JSONObject
+            var routes: List<List<HashMap<String, String>>>? = null
+            try {
+                jObject = JSONObject(params[0])
+                val parser = Dataparse()
+                routes = parser.parse(jObject)
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+            return routes
+        }
+    }
+
+    fun animatePolyLine(duration: Long) {
+        val animator = ValueAnimator.ofInt(0, 100)
+        animator.duration = duration
+        animator.interpolator = LinearInterpolator()
+        animator.addUpdateListener { animator1: ValueAnimator ->
+            val latLngList: MutableList<LatLng> = polyline!!.points
+            val initialPointSize = latLngList.size
+            val animatedValue = animator1.animatedValue as Int
+            val newPoints = animatedValue * listlatlng.size / 100
+            if (initialPointSize < newPoints) {
+                latLngList.addAll(listlatlng.subList(initialPointSize, newPoints))
+                polyline!!.points = latLngList
+            }
+        }
+        animator.addListener(polyLineAnimationListener)
+        animator.start()
+    }
+
+    var polyLineAnimationListener: Animator.AnimatorListener = object : Animator.AnimatorListener {
+        override fun onAnimationStart(animator: Animator) {
+//            if (listlatlng.size() > 0)
+//                addMarker(listlatlng.get(listlatlng.size() - 1));
+        }
+
+        override fun onAnimationEnd(animator: Animator) {
+            val poly1: MutableList<LatLng> = polyline!!.points
+            val poly2: MutableList<LatLng> = darkpolyline!!.points
+            poly2.clear()
+            poly2.addAll(poly1)
+            poly1.clear()
+            polyline!!.points = poly1
+            darkpolyline!!.points = poly2
+            polyline!!.zIndex = 2f
+        }
+
+        override fun onAnimationCancel(animator: Animator) {}
+        override fun onAnimationRepeat(animator: Animator) {}
     }*/
 
     fun gpsupdate() {
