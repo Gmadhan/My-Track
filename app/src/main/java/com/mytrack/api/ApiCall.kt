@@ -1,6 +1,6 @@
 package com.mytrack.api
 
-import com.mytrack.model.response.WeatherResponse
+import com.mytrack.model.WeatherResponse
 import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Query

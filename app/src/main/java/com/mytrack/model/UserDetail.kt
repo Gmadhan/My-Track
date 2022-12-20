@@ -1,4 +1,4 @@
-package com.mytrack.model.response
+package com.mytrack.model
 
 import com.google.gson.annotations.SerializedName
 

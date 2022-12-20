@@ -1,4 +1,4 @@
-package com.mytrack.model.response;
+package com.mytrack.model;
 
 import java.util.ArrayList;
 

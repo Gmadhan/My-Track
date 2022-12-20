@@ -21,7 +21,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mytrack.R
 import com.mytrack.databinding.FragmentSigninBinding
-import com.mytrack.model.response.UserDetail
+import com.mytrack.model.UserDetail
 import com.mytrack.ui.forgot.ForgotPasswordActivity
 import com.mytrack.ui.onboard.OnBoardActivity
 import com.mytrack.utils.*

@@ -8,9 +8,7 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.TextUtils
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +18,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mytrack.R
 import com.mytrack.databinding.ActivityEditProfileBinding
-import com.mytrack.model.response.UserDetail
+import com.mytrack.model.UserDetail
 import com.mytrack.utils.Constants
 import com.mytrack.utils.Notify.createNotificationChannel
 import com.mytrack.utils.SessionSave

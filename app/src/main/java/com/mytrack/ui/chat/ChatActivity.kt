@@ -26,13 +26,13 @@ import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseListAdapter
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
-import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.mytrack.databinding.FragmentChatBinding
-import com.mytrack.model.response.UserDetail
-import com.mytrack.model.response.chatMessage
-import com.mytrack.model.response.tokendata
+import com.mytrack.model.MessageResponse
+import com.mytrack.model.UserDetail
 import com.mytrack.utils.Constants
 import com.mytrack.utils.SessionSave
 import com.mytrack.utils.Utils.dismissLoader
@@ -46,7 +46,7 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
 
     private lateinit var fragmentChatBinding: FragmentChatBinding
     private var mFirebaseDatabase: DatabaseReference? = null
-    private var adapter: FirebaseListAdapter<chatMessage>? = null
+    private var adapter: FirebaseListAdapter<MessageResponse>? = null
     private var myClip: ClipData? = null
     private var clipboard: ClipboardManager? = null
     private var userId: String? = null
@@ -79,8 +79,7 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
         fragmentChatBinding.sendImage.setOnClickListener(this)
         fragmentChatBinding.btnBack.setOnClickListener(this)
         fragmentChatBinding.message.setText("")
-        val mFirebaseInstance = FirebaseDatabase.getInstance()
-        mFirebaseDatabase = mFirebaseInstance.getReference("chats")
+        mFirebaseDatabase = Firebase.database.reference.child("chats")
         mobileno = SessionSave.getSession(Constants.MOBILENO,this)
         clipboard =this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
         if (intent != null) {
@@ -119,9 +118,8 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getToken() {
-        val mFirebaseInstance = FirebaseDatabase.getInstance()
-        val FirebaseDatabase = mFirebaseInstance.getReference("users")
-        FirebaseDatabase.addValueEventListener(object : ValueEventListener {
+        val firebaseDatabase = Firebase.database.reference.child("users")
+        firebaseDatabase.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(@NonNull dataSnapshot: DataSnapshot) {
                 for (chidSnap in dataSnapshot.children) {
                     val all = chidSnap.key
@@ -147,14 +145,7 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
      * Storage chats in the firebase */
     private fun createchat(messageText: String, username: String?, from: String) {
         try {
-            val chatMessage = chatMessage(
-                messageText,
-                username,
-                from,
-                ""
-            )
-            val time = Date().time.toString()
-            mFirebaseDatabase!!.child(username!!).child(time).setValue(chatMessage)
+            mFirebaseDatabase!!.child(username!!).child(Date().time.toString()).setValue(MessageResponse(messageText, username,from, ""))
             addUserChangeListener()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -182,10 +173,10 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
      * get conversion between two users */
     fun chatlist() {
         showloader(this)
-        adapter = object : FirebaseListAdapter<chatMessage>(this, chatMessage::class.java,
+        adapter = object : FirebaseListAdapter<MessageResponse>(this, MessageResponse::class.java,
             R.layout.message, mFirebaseDatabase!!.child(userId!!)
         ) {
-            override fun populateView(v: View, model: chatMessage, position: Int) {
+            override fun populateView(v: View, messageData: MessageResponse, position: Int) {
                 dismissLoader()
                 // Get references to the views of message.xml
                 val messageText: TextView = v.findViewById(R.id.message)
@@ -196,20 +187,19 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
                 val chatLay = v.findViewById<LinearLayout>(R.id.chat_lay)
 
                 // Set their text
-                if (model.messageText != null && !model.messageText.equals("")) {
+                if (messageData.messageText != null && !messageData.messageText.equals("")) {
                     messageText.visibility = View.VISIBLE
                     imageView.visibility = View.GONE
-                    messageText.text = model.messageText
+                    messageText.text = messageData.messageText
                     messageText.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
                     messageText.setTextColor(resources.getColor(R.color.Black))
-                } else if (model.imageUrl != null && !model.imageUrl.equals("")) {
-                    val imageUrl: String = model.imageUrl
+                } else if (messageData.imageUrl != null && !messageData.imageUrl.equals("")) {
+                    val imageUrl: String = messageData.imageUrl!!
                     imageView.visibility = View.VISIBLE
                     messageText.visibility = View.GONE
                     logger(TAG,"image url $imageUrl")
                     //                    if (imageUrl.startsWith("gs://")) {
-                    val storageReference =
-                        FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl)
+                    val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl)
                     storageReference.downloadUrl.addOnCompleteListener { task: Task<Uri> ->
                         if (task.isSuccessful) {
                             val downloadUrl = task.result.toString()
@@ -233,7 +223,7 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
                     )
                     messageText.setTextColor(resources.getColor(R.color.HintColor))
                 }
-                if (model.from.equals(mobileno)) {
+                if (messageData.from.equals(mobileno)) {
                     messageText.background = resources.getDrawable(R.drawable.bg_chat_right,null)
                     imageView.background = resources.getDrawable(R.drawable.bg_chat_right,null)
                     messageText.gravity = Gravity.RIGHT
@@ -246,9 +236,9 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
                     messageText.background = resources.getDrawable(R.drawable.bg_chat_left,null)
                     imageView.background = resources.getDrawable(R.drawable.bg_chat_left,null)
                 }
-                logger(TAG,"messages : " + model.messageText.toString() + " -- " + model.messageUser)
+                logger(TAG,"messages : " + messageData.messageText.toString() + " -- " + messageData.messageUser)
                 // Format the date before showing it
-                messageTime.text = DateFormat.format("dd-MMM HH:mm", model.messageTime)
+                messageTime.text = DateFormat.format("dd-MMM HH:mm", messageData.messageTime)
             }
         }
         fragmentChatBinding.chatList.adapter = adapter
@@ -334,14 +324,11 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
                     val uri = data.data
                     logger(TAG, "Uri: " + uri.toString())
                     val time = Date().time.toString()
-                    val chatMessage = chatMessage(
-                        "",
-                        username,
-                        SessionSave.getSession(Constants.MOBILENO, this),
-                        ""
-                    )
                     mFirebaseDatabase!!.child(userId!!).child(time).setValue(
-                        chatMessage
+                        MessageResponse("",
+                            username,
+                            SessionSave.getSession(Constants.MOBILENO, this),
+                            "")
                     ) { databaseError: DatabaseError?, databaseReference: DatabaseReference ->
                         if (databaseError == null) {
                             val key = databaseReference.key
@@ -363,18 +350,9 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
         storageReference.putFile(uri!!).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 task.result!!.metadata!!.reference!!.downloadUrl
-                    .addOnCompleteListener(
-                       this
-                    ) { task1 ->
+                    .addOnCompleteListener(this) { task1 ->
                         if (task1.isSuccessful) {
-                            val chatMessage =
-                                chatMessage(
-                                    "",
-                                    username,
-                                    SessionSave.getSession(Constants.MOBILENO, this),
-                                    task1.result.toString()
-                                )
-                            mFirebaseDatabase!!.child(userId!!).child(time).setValue(chatMessage)
+                            mFirebaseDatabase!!.child(userId!!).child(time).setValue(MessageResponse("", username, SessionSave.getSession(Constants.MOBILENO, this), task1.result.toString()))
                         }
                     }
             } else {

@@ -10,6 +10,7 @@
     android:padding="@dimen/dp20">
 
     <RelativeLayout
+        android:id="@+id/rl_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

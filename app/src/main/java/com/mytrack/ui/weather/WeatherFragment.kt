@@ -12,7 +12,7 @@ import com.mytrack.R
 import com.mytrack.api.ApiCall
 import com.mytrack.api.RetrofitClientInstance
 import com.mytrack.databinding.FragmentWeatherBinding
-import com.mytrack.model.response.WeatherResponse
+import com.mytrack.model.WeatherResponse
 import com.mytrack.utils.Constants
 import com.mytrack.utils.Notify.Appid
 import com.mytrack.utils.SessionSave

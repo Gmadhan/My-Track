@@ -16,7 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:contentDescription="@string/app_name" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -28,7 +29,7 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/find_user"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="top|center"
             android:layout_weight="4"
             android:background="@drawable/text_cornor"
@@ -72,7 +73,6 @@
                 android:layout_height="wrap_content"
                 android:background="@color/White"
                 android:drawableStart="@drawable/ic_speed"
-                android:drawableLeft="@drawable/ic_speed"
                 android:padding="@dimen/dp5"
                 android:text="@string/speed"
                 android:textColor="@color/Black"
@@ -93,7 +93,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/textrightcornor"
                 android:drawableStart="@drawable/ic_time"
-                android:drawableLeft="@drawable/ic_time"
                 android:padding="@dimen/dp5"
                 android:textColor="@color/Black"
                 android:textSize="@dimen/sp18"
@@ -125,8 +124,7 @@
                 android:layout_height="@dimen/dp20"
                 android:layout_gravity="top|center_horizontal"
                 android:layout_marginTop="@dimen/dp5"
-                android:background="@drawable/ic_down_arrow"
-                android:foreground="?android:attr/selectableItemBackground" />
+                android:background="@drawable/ic_down_arrow" />
 
             <LinearLayout
                 android:id="@+id/marker_distance"
@@ -219,7 +217,8 @@
                     android:layout_marginHorizontal="@dimen/dp15"
                     android:layout_marginVertical="@dimen/dp10"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -286,7 +285,8 @@
             android:background="@animator/check"
             android:checked="false"
             android:textOff=""
-            android:textOn="" />
+            android:textOn=""
+            tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/direction"
@@ -295,7 +295,6 @@
             android:layout_marginTop="@dimen/dp15"
             android:layout_marginHorizontal="@dimen/dp10"
             android:background="@drawable/ic_direction"
-            android:foreground="?android:attr/selectableItemBackground"
             android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -304,7 +303,6 @@
             android:layout_height="@dimen/dp40"
             android:layout_marginTop="@dimen/dp15"
             android:layout_marginHorizontal="@dimen/dp10"
-            android:foreground="?android:attr/selectableItemBackground"
             android:padding="@dimen/dp5"
             app:srcCompat="@drawable/ic_find_friend"
             android:visibility="gone" />
@@ -315,7 +313,6 @@
             android:layout_height="@dimen/dp40"
             android:layout_marginTop="@dimen/dp15"
             android:layout_marginHorizontal="@dimen/dp10"
-            android:foreground="?android:attr/selectableItemBackground"
             android:padding="@dimen/dp5"
             app:srcCompat="@drawable/ic_voice_search"
             android:visibility="gone" />
@@ -326,7 +323,7 @@
         android:id="@+id/weather_anim"
         android:layout_width="@dimen/dp35"
         android:layout_height="@dimen/dp35"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:layout_marginHorizontal="@dimen/dp10"
         android:layout_marginTop="@dimen/dp75"
         android:visibility="visible"
@@ -338,7 +335,7 @@
         android:id="@+id/animationView"
         android:layout_width="@dimen/dp35"
         android:layout_height="@dimen/dp35"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:layout_marginHorizontal="@dimen/dp10"
         android:layout_marginTop="@dimen/dp120"
         android:visibility="visible"
@@ -352,8 +349,8 @@
         android:layout_height="@dimen/dp30"
         android:layout_gravity="center|right"
         android:layout_marginHorizontal="@dimen/dp10"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:srcCompat="@drawable/ic_gps_pointer" />
+        app:srcCompat="@drawable/ic_gps_pointer"
+        tools:ignore="RtlHardcoded" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/open"
@@ -362,7 +359,6 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="@dimen/dp5"
         android:background="@drawable/ic_up_arrow"
-        android:foreground="?android:attr/selectableItemBackground"
         android:visibility="gone" />
 
 </fragment>

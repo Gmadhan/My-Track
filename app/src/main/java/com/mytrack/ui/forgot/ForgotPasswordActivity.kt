@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.database.*
 import com.mytrack.R
 import com.mytrack.databinding.ActivityForgotpwdBinding
-import com.mytrack.model.response.UserDetail
+import com.mytrack.model.UserDetail
 import com.mytrack.ui.onboard.OnBoardActivity
 import com.mytrack.utils.Notify.createNotificationChannel
 import com.mytrack.utils.Utils

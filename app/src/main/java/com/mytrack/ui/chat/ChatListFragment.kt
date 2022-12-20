@@ -13,13 +13,12 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.firebase.ui.database.FirebaseListAdapter
 import com.google.firebase.database.*
 import com.mytrack.databinding.FragmentContactBinding
-import com.mytrack.model.response.ContactsData
-import com.mytrack.model.response.UserDetail
+import com.mytrack.model.ContactsData
+import com.mytrack.model.UserDetail
 import com.mytrack.utils.Constants
 import com.mytrack.utils.Notify
 import com.mytrack.utils.SessionSave

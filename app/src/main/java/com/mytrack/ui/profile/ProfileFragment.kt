@@ -1,39 +1,20 @@
 package com.mytrack.ui.profile
 
-import android.Manifest
-import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.database.Cursor
-import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import com.airbnb.lottie.LottieAnimationView
-import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.mytrack.R
 import com.mytrack.databinding.FragmentProfileBinding
-import com.mytrack.model.response.UserDetail
 import com.mytrack.ui.MainActivity
 import com.mytrack.utils.CommonBottomSheet
 import com.mytrack.utils.Constants
 import com.mytrack.utils.SessionSave
 import com.mytrack.utils.Utils
-import com.mytrack.utils.Utils.encodeBitmapAndSaveToFirebase
-import java.io.IOException
 
 class ProfileFragment : Fragment(), View.OnClickListener {
     private lateinit var fragmentProfileBinding: FragmentProfileBinding

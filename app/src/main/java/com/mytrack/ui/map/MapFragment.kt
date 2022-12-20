@@ -36,7 +36,7 @@ import com.mytrack.R
 import com.mytrack.api.ApiCall
 import com.mytrack.api.RetrofitClientInstance
 import com.mytrack.databinding.FragmentMapBinding
-import com.mytrack.model.response.WeatherResponse
+import com.mytrack.model.WeatherResponse
 import com.mytrack.ui.profile.EditProfileActivity
 import com.mytrack.utils.*
 import com.mytrack.utils.Utils.convertDateTime

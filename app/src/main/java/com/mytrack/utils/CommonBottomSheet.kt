@@ -12,16 +12,8 @@ import com.mytrack.databinding.CommonBottomSheetBinding
 class CommonBottomSheet(var activity: Context, var type:String) : BottomSheetDialogFragment() {
     private lateinit var commonBottomSheetBinding: CommonBottomSheetBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setStyle(STYLE_NORMAL, R.style.MyTransparentBottomSheetDialogTheme);
-        /*var v = inflater.inflate(
-            R.layout.common_bottom_sheet,
-            container, false
-        )*/
         commonBottomSheetBinding = CommonBottomSheetBinding.inflate(layoutInflater, container, false)
         init()
         return commonBottomSheetBinding.root

@@ -1,6 +1,6 @@
 package com.mytrack.api
 
-import com.mytrack.model.response.WeatherResponse
+import com.mytrack.model.WeatherResponse
 
 class WeatherRepository(private val weatherData: WeatherResponse) {
     private val loginUrl = "http://api.openweathermap.org/data/2.5/"

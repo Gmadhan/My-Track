@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.mytrack.model.response.UserDetail
+import com.mytrack.model.UserDetail
 import com.mytrack.utils.Utils.toString
 
 object FirebaseDataAccess {

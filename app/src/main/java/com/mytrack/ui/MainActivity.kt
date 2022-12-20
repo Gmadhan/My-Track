@@ -7,24 +7,13 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.mytrack.R
-import com.mytrack.api.ApiCall
-import com.mytrack.api.RetrofitClientInstance
 import com.mytrack.databinding.ActivityMainBinding
-import com.mytrack.model.response.WeatherResponse
 import com.mytrack.ui.chat.ChatListFragment
 import com.mytrack.ui.map.MapFragment
 import com.mytrack.ui.onboard.OnBoardActivity
 import com.mytrack.ui.profile.ProfileFragment
 import com.mytrack.ui.weather.WeatherFragment
-import com.mytrack.utils.Constants
-import com.mytrack.utils.Notify
-import com.mytrack.utils.SessionSave
-import com.mytrack.utils.Utils
 import com.mytrack.utils.Utils.showToast
-import com.mytrack.utils.Utils.toString
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
