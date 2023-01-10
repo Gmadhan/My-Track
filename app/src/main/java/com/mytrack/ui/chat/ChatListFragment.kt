@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.firebase.ui.database.FirebaseListAdapter
 import com.google.firebase.database.*
@@ -53,9 +54,9 @@ class ChatListFragment: Fragment(), View.OnClickListener {
         user_phno = SessionSave.getSession(Constants.MOBILENO, requireActivity())
         user_name = SessionSave.getSession(Constants.NAME, requireActivity())
 
-        fragmentContactBinding.header.txtHeaderName.text = getString(R.string.contacts)
+        fragmentContactBinding.inHeader.txtHeaderName.text = getString(R.string.contacts)
         fragmentContactBinding.btnAddContact.setOnClickListener(this)
-        fragmentContactBinding.header.btnBack.visibility = View.GONE
+        fragmentContactBinding.inHeader.btnBack.visibility = View.GONE
 
         try {
             Notify.mobileArr.clear()
@@ -158,11 +159,6 @@ class ChatListFragment: Fragment(), View.OnClickListener {
             val id = n.toString()
             val time = Date().time.toString()
             val contactData = ContactsData( name, phoneno, id, createrName, createrNo)
-           /* data.id = id
-            data.name = name
-            data.mobileno = phoneno
-            data.createrName = createrName
-            data.createrNo = createrNo*/
             mFirebaseDatabase!!.child(user_phno!!).child(time).setValue(contactData)
             mFirebaseDatabase!!.child(phoneno).child(time).setValue(contactData)
             addUserChangeListener()
@@ -176,7 +172,6 @@ class ChatListFragment: Fragment(), View.OnClickListener {
      * User data change listener
      */
     private fun addUserChangeListener() {
-        // User data change listener
         mFirebaseDatabase!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(@NonNull dataSnapshot: DataSnapshot) {
                 val user: UserDetail? = dataSnapshot.getValue(UserDetail::class.java)
@@ -192,14 +187,12 @@ class ChatListFragment: Fragment(), View.OnClickListener {
 
     private fun contactlistAdapter() {
         Utils.showloader(requireActivity())
-        // Get references to the views of message.xml
         val adapter: FirebaseListAdapter<ContactsData> = object : FirebaseListAdapter<ContactsData>(requireActivity(), ContactsData::class.java,
-            R.layout.contacts, mFirebaseDatabase!!.child(user_phno!!).orderByChild("name")
-        ) {
+            R.layout.item_contact, mFirebaseDatabase!!.child(user_phno!!).orderByChild("name")) {
             @SuppressLint("SetTextI18n")
             override fun populateView(v: View, model: ContactsData, position: Int) {
                 // Get references to the views of message.xml
-                val username: TextView = v.findViewById(R.id.name)
+                val username: TextView = v.findViewById(R.id.txt_name)
                 val contact_logo: TextView = v.findViewById(R.id.logo)
                 Utils.dismissLoader()
                 if (user_phno.equals(model.mobileno.toString(), ignoreCase = true)) {
@@ -224,14 +217,26 @@ class ChatListFragment: Fragment(), View.OnClickListener {
                     startActivity(intent)
                     logger(TAG,"contacts-- " + username.text.toString() + ": " + selected_Id.toString() + ": " + model.mobileno)
                 }
+
+                if(model != null) {
+                    setNoData(false)
+                } else {
+                    setNoData(true)
+                }
             }
 
             override fun onCancelled(databaseError: DatabaseError?) {
                 super.onCancelled(databaseError)
                 Utils.dismissLoader()
+                setNoData(true)
             }
         }
         fragmentContactBinding.contactList.adapter = adapter
+    }
+
+    fun setNoData(show: Boolean) {
+        fragmentContactBinding.contactList.visibility = if(show) View.GONE else View.VISIBLE
+        fragmentContactBinding.inNodata.rlNodata.visibility = if(show) View.VISIBLE else View.GONE
     }
 
 }

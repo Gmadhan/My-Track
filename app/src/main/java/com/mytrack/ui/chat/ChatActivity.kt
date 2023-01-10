@@ -174,11 +174,9 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
     fun chatlist() {
         showloader(this)
         adapter = object : FirebaseListAdapter<MessageResponse>(this, MessageResponse::class.java,
-            R.layout.message, mFirebaseDatabase!!.child(userId!!)
-        ) {
+            R.layout.item_message, mFirebaseDatabase!!.child(userId!!)) {
             override fun populateView(v: View, messageData: MessageResponse, position: Int) {
                 dismissLoader()
-                // Get references to the views of message.xml
                 val messageText: TextView = v.findViewById(R.id.message)
                 val messageUser: TextView = v.findViewById(R.id.sender)
                 val messageTime: TextView = v.findViewById(R.id.time)
@@ -186,7 +184,6 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
                 val relativeLayout = v.findViewById<RelativeLayout>(R.id.relative_layout)
                 val chatLay = v.findViewById<LinearLayout>(R.id.chat_lay)
 
-                // Set their text
                 if (messageData.messageText != null && !messageData.messageText.equals("")) {
                     messageText.visibility = View.VISIBLE
                     imageView.visibility = View.GONE

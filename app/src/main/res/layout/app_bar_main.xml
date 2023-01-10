@@ -34,7 +34,7 @@
                 android:visibility="visible">
 
                 <include android:id="@+id/ivUser"
-                    layout="@layout/circular_image"
+                    layout="@layout/common_circular_image"
                     android:layout_width="@dimen/dp30"
                     android:layout_height="@dimen/dp30"
                     android:layout_centerInParent="true"

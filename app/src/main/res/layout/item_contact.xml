@@ -30,7 +30,7 @@
                 android:textSize="@dimen/sp16" />
 
             <com.mytrack.utils.customtext.RegularTextView
-                android:id="@+id/name"
+                android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/Transparent"

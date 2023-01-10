@@ -26,7 +26,7 @@
             android:layout_width="@dimen/dp120"
             android:layout_height="@dimen/dp120"
             android:layout_gravity="center"
-            layout="@layout/circular_image"/>
+            layout="@layout/common_circular_image"/>
 
         <com.mytrack.utils.customtext.SemiBoldTextView
             android:id="@+id/txtProfileName"

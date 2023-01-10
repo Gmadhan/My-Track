@@ -43,6 +43,7 @@
     <string name="Successfully_signup">Successfully signup in mapbroadcast</string>
     <string name="please_connect_internet">Please Connect to the Internet</string>
     <string name="please_check_gps">Please Check Gps</string>
+    <string name="no_data">No Data Found</string>
 
     <string name="got_it">Got It</string>
     <string name="search_bar">Search Bar</string>
