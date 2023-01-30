@@ -21,11 +21,8 @@ import com.mytrack.databinding.ActivityOnboardBinding
 import com.mytrack.ui.MainActivity
 import com.mytrack.ui.login.SigninFragment
 import com.mytrack.ui.login.SignupFragment
-import com.mytrack.utils.Constants
-import com.mytrack.utils.Notify
-import com.mytrack.utils.SessionSave
+import com.mytrack.utils.*
 import com.mytrack.utils.Utils.showToast
-import com.mytrack.utils.ViewPagerAdapter
 
 
 class OnBoardActivity: AppCompatActivity() {
@@ -52,6 +49,7 @@ class OnBoardActivity: AppCompatActivity() {
             mFirebaseInstance.child("app").setValue("My Track")
             mFirebaseDatabase = mFirebaseInstance.child("users")
             Notify.DeviceToken = FirebaseMessaging.getInstance().token.toString()
+            Utils.logger(TAG.toString(), "Token  : " +FirebaseMessaging.getInstance().token.toString())
             SessionSave.saveSession(Constants.TOKEN, FirebaseMessaging.getInstance().token.toString(), this)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -93,13 +91,16 @@ class OnBoardActivity: AppCompatActivity() {
 
     private fun getPermission() {
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                    !== PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    !== PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
                 application,
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ) !== PackageManager.PERMISSION_GRANTED
                     ) || ActivityCompat.checkSelfPermission(
                 application,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) !== PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
             ) !== PackageManager.PERMISSION_GRANTED
         ) {
             // TODO: Consider calling
@@ -115,7 +116,8 @@ class OnBoardActivity: AppCompatActivity() {
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.POST_NOTIFICATIONS
                 ),
                 MY_PERMISSIONS_REQUEST
             )
