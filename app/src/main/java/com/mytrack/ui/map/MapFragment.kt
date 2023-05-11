@@ -1,6 +1,8 @@
 package com.mytrack.ui.map
 
 import android.Manifest
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,6 +14,7 @@ import android.os.*
 import android.provider.SettingsSlicesContract.KEY_LOCATION
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.*
 import androidx.core.app.ActivityCompat
@@ -92,6 +95,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
     private var GpsEnabled = false
     private var NetworkEnabled = false
     private var nigthtime = false
+    private var trfCheckBtn = false
 
     companion object {
         var distanceText:String? = null
@@ -145,6 +149,36 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
             val i = Intent(requireActivity(), EditProfileActivity::class.java)
             startActivity(i)
         }
+
+        fragmentMapBinding.searchBar.main.toggle.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (!Utils.isNetworkAvailable(activity)) {
+                Toast.makeText(activity, getString(R.string.check_ur_internet), Toast.LENGTH_SHORT).show()
+            } else {
+                val animationSet = AnimatorSet()
+                animationSet.duration = 160
+                animationSet.playSequentially(
+                    ObjectAnimator.ofFloat(fragmentMapBinding.searchBar.main.toggle, "rotation", 20f),
+                    ObjectAnimator.ofFloat(fragmentMapBinding.searchBar.main.toggle, "rotation", -20f),
+                    ObjectAnimator.ofFloat(fragmentMapBinding.searchBar.main.toggle, "rotation", 0f)
+                )
+                animationSet.start()
+            }
+            // write here your code for example ...
+            trfCheckBtn = isChecked
+            maptools()
+        }
+    }
+
+    fun maptools() {
+        mMap!!.isTrafficEnabled = trfCheckBtn
+        mMap!!.uiSettings.isCompassEnabled = false
+        mMap!!.uiSettings.isIndoorLevelPickerEnabled = true
+        mMap!!.uiSettings.isRotateGesturesEnabled = true
+        mMap!!.uiSettings.isZoomGesturesEnabled = true
+        mMap!!.uiSettings.isTiltGesturesEnabled = true
+        mMap!!.uiSettings.isMapToolbarEnabled = false
+        mMap!!.uiSettings.isMyLocationButtonEnabled = false
+        mMap!!.uiSettings.isCompassEnabled = true
     }
 
     fun setAutoComplete() {
