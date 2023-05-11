@@ -232,7 +232,7 @@
                             android:layout_weight="1"
                             android:padding="@dimen/dp5"
                             android:text="-"
-                            android:textColor="@color/TextMediumGrey"
+                            android:textColor="@color/secondarylitecolor"
                             android:textSize="@dimen/dp16"
                             android:gravity="end"/>
                     </LinearLayout>
@@ -268,7 +268,7 @@
                             android:layout_weight="1"
                             android:padding="@dimen/dp5"
                             android:text="-"
-                            android:textColor="@color/TextMediumGrey"
+                            android:textColor="@color/secondarylitecolor"
                             android:textSize="@dimen/sp16"
                             android:gravity="end"/>
                     </LinearLayout>
@@ -304,7 +304,7 @@
                             android:layout_weight="1"
                             android:padding="@dimen/dp5"
                             android:text="-"
-                            android:textColor="@color/TextMediumGrey"
+                            android:textColor="@color/secondarylitecolor"
                             android:textSize="@dimen/sp16"
                             android:gravity="end"/>
                     </LinearLayout>
@@ -340,7 +340,7 @@
                             android:layout_weight="1"
                             android:padding="@dimen/dp5"
                             android:text="-"
-                            android:textColor="@color/TextMediumGrey"
+                            android:textColor="@color/secondarylitecolor"
                             android:textSize="@dimen/sp16"
                             android:gravity="end"/>
                     </LinearLayout>
@@ -376,7 +376,7 @@
                             android:layout_weight="1"
                             android:padding="@dimen/dp5"
                             android:text="-"
-                            android:textColor="@color/TextMediumGrey"
+                            android:textColor="@color/secondarylitecolor"
                             android:textSize="@dimen/sp16"
                             android:gravity="end"/>
                     </LinearLayout>
@@ -412,7 +412,7 @@
                             android:layout_weight="1"
                             android:padding="@dimen/dp5"
                             android:text="-"
-                            android:textColor="@color/TextMediumGrey"
+                            android:textColor="@color/secondarylitecolor"
                             android:textSize="@dimen/sp16"
                             android:gravity="end"/>
                     </LinearLayout>

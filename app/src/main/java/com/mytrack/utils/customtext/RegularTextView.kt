@@ -27,7 +27,7 @@ class RegularTextView : TextView {
     }
 
     fun init() {
-        val tf = ResourcesCompat.getFont(context, R.font.rapor_regular)
+        val tf = ResourcesCompat.getFont(context, R.font.regular)
         typeface = tf
     }
 

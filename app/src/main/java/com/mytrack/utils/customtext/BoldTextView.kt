@@ -27,7 +27,7 @@ class BoldTextView : TextView {
     }
 
     fun init() {
-        val tf = ResourcesCompat.getFont(context, R.font.rapor_bold)
+        val tf = ResourcesCompat.getFont(context, R.font.bold)
         typeface = tf
     }
 

@@ -27,7 +27,7 @@ class MediumTextView : TextView {
     }
 
     fun init() {
-        val tf = ResourcesCompat.getFont(context, R.font.rapor_medium)
+        val tf = ResourcesCompat.getFont(context, R.font.light)
         typeface = tf
     }
 

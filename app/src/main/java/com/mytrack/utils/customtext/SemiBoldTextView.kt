@@ -27,7 +27,7 @@ class SemiBoldTextView : TextView {
     }
 
     fun init() {
-        val tf = ResourcesCompat.getFont(context, R.font.rapor_semibold)
+        val tf = ResourcesCompat.getFont(context, R.font.semibold)
         typeface = tf
     }
 
