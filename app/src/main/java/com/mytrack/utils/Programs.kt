@@ -1,6 +1,5 @@
 package com.mytrack.utils
 
-import android.util.Log
 import com.mytrack.utils.Utils.logger
 
 object Programs {
@@ -79,6 +78,27 @@ object Programs {
 
             i++
         }
+    }
+
+    fun reverseSentence() {
+        var a = "welcome, how are you!"
+        val arrOfStr = a.split(" ".toRegex()).toTypedArray()
+        var data = ArrayList<String>()
+        for (a in arrOfStr) {
+            data.add(a)
+        }
+
+        var output = ""
+        for(i in data.size-1 downTo 0) {
+            if(data[i].contains(",")) {
+                output += data[i].replace(",", "!")
+            } else if(data[i].contains("!")) {
+                output += data[i].replace("!", ",")
+            } else {
+                output += data[i] + " "
+            }
+        }
+        println("Reverse Sentence : - $output")
     }
 
 }
