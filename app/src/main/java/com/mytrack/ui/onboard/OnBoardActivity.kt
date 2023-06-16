@@ -14,7 +14,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.app
 import com.google.firebase.messaging.FirebaseMessaging
 import com.mytrack.R
 import com.mytrack.databinding.ActivityOnboardBinding
@@ -48,9 +50,9 @@ class OnBoardActivity: AppCompatActivity() {
             val mFirebaseInstance = Firebase.database.reference
             mFirebaseInstance.child("app").setValue("My Track")
             mFirebaseDatabase = mFirebaseInstance.child("users")
-            Notify.DeviceToken = FirebaseMessaging.getInstance().token.toString()
-            Utils.logger(TAG.toString(), "Token  : " +FirebaseMessaging.getInstance().token.toString())
-            SessionSave.saveSession(Constants.TOKEN, FirebaseMessaging.getInstance().token.toString(), this)
+            Notify.DeviceToken = FirebaseMessaging.getInstance().token.result
+            Utils.logger(TAG.toString(), "Token  : " + Notify.DeviceToken)
+            SessionSave.saveSession(Constants.TOKEN, Notify.DeviceToken, this)
         } catch (e: Exception) {
             e.printStackTrace()
         }

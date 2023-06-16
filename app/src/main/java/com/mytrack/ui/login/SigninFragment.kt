@@ -115,9 +115,9 @@ class SigninFragment : Fragment() {
                 fragmentSigninBinding.btnSigninSuccess.visibility = View.VISIBLE
                 fragmentSigninBinding.btnSigninSuccess.playAnimation()
                 if (!getDeviceInfo().equals("", ignoreCase = true))
-                    mFirebaseDatabase!!.child(mobileno!!).child("model").setValue(getDeviceInfo())
+                    mFirebaseDatabase!!.child("model").setValue(getDeviceInfo())
                 if (!SessionSave.getSession(Constants.TOKEN,requireActivity()).toString().isNullOrEmpty())
-                    mFirebaseDatabase!!.child(mobileno!!).child("token").setValue(SessionSave.getSession(Constants.TOKEN,requireActivity()).toString())
+                    mFirebaseDatabase!!.child("token").setValue(SessionSave.getSession(Constants.TOKEN,requireActivity()).toString())
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     Utils.dismissLoader()
@@ -184,9 +184,9 @@ class SigninFragment : Fragment() {
         SessionSave.saveSession(Constants.NAME, userData.name, requireActivity())
         SessionSave.saveSession(Constants.EMAIL, userData.email, requireActivity())
         SessionSave.saveSession(Constants.MOBILENO, userData.phoneno, requireActivity())
-        SessionSave.saveSession(Constants.TOKEN, userData.token, requireActivity())
+//        SessionSave.saveSession(Constants.TOKEN, userData.token, requireActivity())
         SessionSave.saveSession(Constants.IMAGE, userData.imageEncoded, requireActivity())
-        SessionSave.saveSession(Constants.MODELID, userData.model, requireActivity())
+//        SessionSave.saveSession(Constants.MODELID, userData.model, requireActivity())
         SessionSave.saveSession(Constants.GPSLAT, userData.gpsLat.toString(), requireActivity())
         SessionSave.saveSession(Constants.GPSLNG, userData.gpsLng.toString(), requireActivity())
     }

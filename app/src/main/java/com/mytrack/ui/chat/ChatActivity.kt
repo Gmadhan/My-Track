@@ -1,6 +1,5 @@
 package com.mytrack.ui.chat
 
-import com.mytrack.R
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -30,6 +29,9 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.gson.Gson
+import com.mytrack.MySingleton
+import com.mytrack.R
 import com.mytrack.databinding.FragmentChatBinding
 import com.mytrack.model.MessageResponse
 import com.mytrack.model.UserDetail
@@ -268,7 +270,7 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
                     try {
                         notifcationBody.put("title", receiverName)
                         notifcationBody.put("message", messages)
-                        notification.put("to", "/topics/" + receiverToken)
+                        notification.put("to", "$receiverToken")
                         notification.put("data", notifcationBody)
                     } catch (e: JSONException) {
                         logger(TAG, "onCreate: " + e.message, true)
@@ -290,16 +292,15 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     private fun sendNotification(notification: JSONObject) {
-        val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(FCM_API, notification,
+        val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
+            Method.POST,FCM_API, notification,
             Response.Listener { response: JSONObject ->
-                logger(
-                    TAG,
-                    "onResponse: $response"
-                )
+                logger(TAG, "onResponse: $response")
             },
             Response.ErrorListener { error: VolleyError? ->
                 Toast.makeText(this, "Request error", Toast.LENGTH_LONG).show()
-                logger(TAG, "onErrorResponse: Didn't work")
+                var gson = Gson()
+                logger(TAG, "onErrorResponse: Didn't work " + gson.toJson(error))
             }) {
             @Throws(AuthFailureError::class)
             override fun getHeaders(): Map<String, String> {
@@ -309,7 +310,7 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
                 return params
             }
         }
-//        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+        MySingleton.getInstance(this)!!.addToRequestQueue(jsonObjectRequest)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
