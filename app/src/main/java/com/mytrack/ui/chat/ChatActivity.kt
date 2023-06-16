@@ -205,6 +205,11 @@ class ChatActivity: AppCompatActivity(), View.OnClickListener {
                             Glide.with(this@ChatActivity).load(downloadUrl)
                                 .placeholder(R.drawable.ic_loading).error(R.drawable.ic_error)
                                 .into(imageView)
+                            imageView.setOnClickListener {
+                                val intent = Intent(this@ChatActivity, ImageViewActivity::class.java)
+                                intent.putExtra("image", downloadUrl)
+                                startActivity(intent)
+                            }
                         } else {
                             logger(TAG, "Getting download url was not successful." + task.exception, true)
                         }
