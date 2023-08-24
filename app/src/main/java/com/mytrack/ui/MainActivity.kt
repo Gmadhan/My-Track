@@ -80,8 +80,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
-            super.onBackPressed()
-            return
+            onBackPressedDispatcher.onBackPressed()
         }
         this.doubleBackToExitPressedOnce = true
         showToast(this, getString(R.string.please_click_again_to_exit))

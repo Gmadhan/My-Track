@@ -101,4 +101,54 @@ object Programs {
         println("Reverse Sentence : - $output")
     }
 
+    fun halfPyramid() {
+        var a = 5
+        for(i in 0..a) {
+            for (j in 0..i){
+                print("*")
+            }
+            println()
+        }
+    }
+
+    fun reverseHalfPyramid() {
+        var a = 5
+        for(i in a downTo 0) {
+            for (j in 0..i){
+                print("*")
+            }
+            println()
+        }
+    }
+
+    fun pyramid() {
+        var a = 5
+        var k = 0
+        for (i in 1..a) {
+            for (space in 1..a - i) {
+                print("  ")
+            }
+
+            while (k != 2 * i - 1) {
+                print("* ")
+                ++k
+            }
+
+            println()
+            k = 0
+        }
+    }
+
+    fun pythagorean() {
+        val a = 3
+        val b = 4
+        val c = 5
+        val LHS = (a*a) + (b*b)
+        val RHS = (c*c)
+        if(LHS == RHS)
+            println("Pythagorean")
+        else
+            println("Not Pythagorean")
+    }
+
 }

@@ -239,14 +239,6 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
         Utils.setImage(requireActivity(), SessionSave.getSession(Constants.IMAGE, context)!!,fragmentMapBinding.searchBar.ivUser.ivUser)
     }
 
-    private fun tempLocation() {
-        val latLng = LatLng(11.678, 77.678)
-        val markerOptions = MarkerOptions().position(latLng).title("I am here!")
-        mMap?.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-        mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-        mMap?.addMarker(markerOptions)
-    }
-
     /**
      * Gets the current location of the device, and positions the map's camera.
      */
@@ -715,9 +707,7 @@ class MapFragment: Fragment(), OnMapReadyCallback, LocationListener, View.OnClic
     fun callWeatherApi() {
         try {
             /*Create handle for the RetrofitInstance interface*/
-            val service: ApiCall =
-                RetrofitClientInstance.getRetrofitInstance()!!.create(ApiCall::class.java)
-            val call: Call<WeatherResponse> = service.getweather(
+            val call: Call<WeatherResponse> = RetrofitClientInstance.apiCall!!.getweather(
                 SessionSave.getSession(Constants.GPSLAT, requireActivity()).toString(),
                 SessionSave.getSession(Constants.GPSLNG, requireActivity()).toString(),
                 Notify.Appid

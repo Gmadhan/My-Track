@@ -5,7 +5,7 @@ import com.mytrack.model.WeatherResponse
 class WeatherRepository(private val weatherData: WeatherResponse) {
     private val loginUrl = "http://api.openweathermap.org/data/2.5/"
 
-   /* fun makeLoginRequest(
+    /*fun makeLoginRequest(
         jsonBody: String
     ): Result<weatherResponse> {
         val url = URL(loginUrl)
@@ -19,4 +19,8 @@ class WeatherRepository(private val weatherData: WeatherResponse) {
         }
         return ApiResult.Error(Exception("Cannot open HttpURLConnection"))
     }*/
+
+    fun getWeather(){
+
+    }
 }
