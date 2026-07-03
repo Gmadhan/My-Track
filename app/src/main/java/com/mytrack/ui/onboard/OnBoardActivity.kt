@@ -10,19 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.FirebaseApp
-import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.iid.internal.FirebaseInstanceIdInternal
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.ktx.app
-import com.google.firebase.messaging.FirebaseMessaging
 import com.mytrack.R
 import com.mytrack.databinding.ActivityOnboardBinding
 import com.mytrack.ui.MainActivity
-import com.mytrack.ui.login.SigninFragment
-import com.mytrack.ui.login.SignupFragment
+import com.mytrack.ui.signin.SigninFragment
+import com.mytrack.ui.signup.SignupFragment
 import com.mytrack.utils.*
 import com.mytrack.utils.Utils.showToast
 
@@ -30,8 +25,7 @@ import com.mytrack.utils.Utils.showToast
 class OnBoardActivity: AppCompatActivity() {
 
     private lateinit var activityOnboardBinding: ActivityOnboardBinding
-    private var mFirebaseDatabase: DatabaseReference? = null
-    private var TAG: String? = "OnBoardActivity"
+    private lateinit var viewModel: OnBoardViewModel
     val MY_PERMISSIONS_REQUEST = 110
     private var doubleBackToExitPressedOnce = false
 
@@ -39,23 +33,14 @@ class OnBoardActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         activityOnboardBinding = ActivityOnboardBinding.inflate(layoutInflater)
         setContentView(activityOnboardBinding.root)
+        viewModel = ViewModelProvider(this)[OnBoardViewModel::class.java]
         init()
     }
 
     fun init() {
         getPermission()
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-        FirebaseApp.initializeApp(this)
-        try {
-            val mFirebaseInstance = Firebase.database.reference
-            mFirebaseInstance.child("app").setValue("My Track")
-            mFirebaseDatabase = mFirebaseInstance.child("users")
-            Notify.DeviceToken = FirebaseMessaging.getInstance().token.result
-            Utils.logger(TAG.toString(), "Token  : " + Notify.DeviceToken)
-            SessionSave.saveSession(Constants.TOKEN, Notify.DeviceToken, this)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        viewModel.initializeFirebaseData()
 
         val viewPagerAdapter = ViewPagerAdapter(this)
         viewPagerAdapter.add(SigninFragment(), "Sign In")

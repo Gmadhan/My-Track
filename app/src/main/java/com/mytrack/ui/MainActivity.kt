@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.mytrack.R
 import com.mytrack.databinding.ActivityMainBinding
-import com.mytrack.ui.chat.ChatListFragment
+import com.mytrack.ui.chatlist.ChatListFragment
 import com.mytrack.ui.map.MapFragment
 import com.mytrack.ui.onboard.OnBoardActivity
 import com.mytrack.ui.profile.ProfileFragment

@@ -1,25 +1,22 @@
-package com.mytrack.ui.chat
+package com.mytrack.ui.chatlist
 
-import com.mytrack.R
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.*
 import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.firebase.ui.database.FirebaseListAdapter
 import com.google.firebase.database.*
+import com.mytrack.R
 import com.mytrack.databinding.FragmentContactBinding
 import com.mytrack.model.ContactsData
-import com.mytrack.model.UserDetail
+import com.mytrack.ui.chat.ChatActivity
 import com.mytrack.utils.Constants
 import com.mytrack.utils.Notify
 import com.mytrack.utils.SessionSave
@@ -30,6 +27,7 @@ import java.util.*
 class ChatListFragment: Fragment(), View.OnClickListener {
 
     private lateinit var fragmentContactBinding: FragmentContactBinding
+    private lateinit var viewModel: ChatListViewModel
     private var mFirebaseDatabase: DatabaseReference? = null
     private var contactDialog: Dialog? = null
     private var user_name: String? = null
@@ -43,6 +41,7 @@ class ChatListFragment: Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         fragmentContactBinding = FragmentContactBinding.inflate(layoutInflater, container, false)
+        viewModel = ViewModelProvider(this)[ChatListViewModel::class.java]
         init()
         return fragmentContactBinding.root
     }
@@ -58,27 +57,6 @@ class ChatListFragment: Fragment(), View.OnClickListener {
         fragmentContactBinding.btnAddContact.setOnClickListener(this)
         fragmentContactBinding.inHeader.btnBack.visibility = View.GONE
 
-        try {
-            Notify.mobileArr.clear()
-            val databaseReference = mFirebaseInstance.getReference("users")
-            databaseReference.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(@NonNull dataSnapshot: DataSnapshot) {
-                    try {
-                        for (chidSnap in dataSnapshot.children) {
-                            val all = chidSnap.key
-                            Notify.mobileArr.add(all!!)
-                            logger(TAG,"contactlist " + Notify.mobileArr.toString())
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-
-                override fun onCancelled(@NonNull databaseError: DatabaseError) {}
-            })
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
         contactlistAdapter()
     }
 
@@ -107,19 +85,6 @@ class ChatListFragment: Fragment(), View.OnClickListener {
             val cancel: TextView = contactDialog!!.findViewById(R.id.cancel)
             val save: TextView = contactDialog!!.findViewById(R.id.save)
 
-            mobile.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
-
-                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-                override fun afterTextChanged(s: Editable) {}
-            })
-
             cancel.setOnClickListener { v -> contactDialog!!.dismiss() }
 
             save.setOnClickListener { v ->
@@ -133,11 +98,9 @@ class ChatListFragment: Fragment(), View.OnClickListener {
                     mobile.error = getString(R.string.check_mobileno)
                 else if (!Notify.mobileArr.contains(mobile.text.toString()))
                     mobile.error = getString(R.string.mobile_no_not_exit) else {
-                    createContact(
+                    viewModel.addContact(
                         name.text.toString(),
-                        mobile.text.toString(),
-                        user_name,
-                        user_phno
+                        mobile.text.toString()
                     )
                     contactDialog!!.dismiss()
                 }
@@ -147,51 +110,12 @@ class ChatListFragment: Fragment(), View.OnClickListener {
         }
     }
 
-    private fun createContact(
-        name: String,
-        phoneno: String,
-        createrName: String?,
-        createrNo: String?
-    ) {
-        try {
-            val random = Random()
-            val n = random.nextInt(50)
-            val id = n.toString()
-            val time = Date().time.toString()
-            val contactData = ContactsData( name, phoneno, id, createrName, createrNo)
-            mFirebaseDatabase!!.child(user_phno!!).child(time).setValue(contactData)
-            mFirebaseDatabase!!.child(phoneno).child(time).setValue(contactData)
-            addUserChangeListener()
-            //            listView.notifyAll();
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    /**
-     * User data change listener
-     */
-    private fun addUserChangeListener() {
-        mFirebaseDatabase!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(@NonNull dataSnapshot: DataSnapshot) {
-                val user: UserDetail? = dataSnapshot.getValue(UserDetail::class.java)
-                logger(TAG,"userdetails--$user")
-                contactDialog!!.dismiss()
-            }
-
-            override fun onCancelled(@NonNull error: DatabaseError) {
-                logger(TAG, "Failed to read user "+error.toException(), true)
-            }
-        })
-    }
-
     private fun contactlistAdapter() {
         Utils.showloader(requireActivity())
         val adapter: FirebaseListAdapter<ContactsData> = object : FirebaseListAdapter<ContactsData>(requireActivity(), ContactsData::class.java,
             R.layout.item_contact, mFirebaseDatabase!!.child(user_phno!!).orderByChild("name")) {
             @SuppressLint("SetTextI18n")
             override fun populateView(v: View, model: ContactsData, position: Int) {
-                // Get references to the views of message.xml
                 val username: TextView = v.findViewById(R.id.txt_name)
                 val contact_logo: TextView = v.findViewById(R.id.logo)
                 Utils.dismissLoader()

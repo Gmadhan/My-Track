@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.mytrack.R
 import com.mytrack.databinding.FragmentProfileBinding
 import com.mytrack.ui.MainActivity
@@ -18,7 +19,7 @@ import com.mytrack.utils.Utils
 
 class ProfileFragment : Fragment(), View.OnClickListener {
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
-    private val TAG = "ProfileFragment"
+    private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,8 +27,19 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         fragmentProfileBinding = FragmentProfileBinding.inflate(layoutInflater, container, false)
+        viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         init()
+        observeViewModel()
         return fragmentProfileBinding.root
+    }
+
+    private fun observeViewModel() {
+        viewModel.userData.observe(viewLifecycleOwner) { user ->
+            user?.let {
+                fragmentProfileBinding.txtProfileName.text = Utils.capitalizeWords(it.name ?: "")
+                Utils.setImage(requireActivity(), it.imageEncoded ?: "", fragmentProfileBinding.inUserimage.ivUser)
+            }
+        }
     }
 
     fun init() {
@@ -35,8 +47,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
         fragmentProfileBinding.header.txtHeaderName.text = requireActivity().getString(R.string.profile)
         fragmentProfileBinding.header.btnBack.visibility = View.GONE
-        fragmentProfileBinding.txtProfileName.text = Utils.capitalizeWords(SessionSave.getSession(Constants.NAME, requireActivity()).toString())
-        Utils.setImage(requireActivity(), SessionSave.getSession(Constants.IMAGE, context)!!, fragmentProfileBinding.inUserimage.ivUser)
 
         fragmentProfileBinding.btnChangePassword.setOnClickListener(this)
         fragmentProfileBinding.btnLanguage.setOnClickListener(this)
@@ -62,8 +72,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
             R.id.btnLogout -> {
                 Utils.showToast(requireActivity(), getString(R.string.logged_out_successfully))
-                SessionSave.clearAllSession(requireActivity())
-                SessionSave.saveSession(Constants.ISLOGIN, false, requireActivity())
+                viewModel.logout()
                 (activity as MainActivity).movetoLogin()
             }
 
